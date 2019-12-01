@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Unit from "./modules/unit";
 import Product from "./modules/product";
 import MostFavourableCalculator from './modules/mostFavourableCalculator';
+import TextField from '@material-ui/core/TextField';
 
 class MostFavourable extends Component {
     constructor(props) {
@@ -52,6 +53,14 @@ class MostFavourable extends Component {
     render() {
         return (<div>
             <div>
+            <TextField
+          label="With normal TextField"
+          id="standard-start-adornment"
+          className={clsx(classes.margin, classes.textField)}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+          }}
+        />
                 <input type="number" step="0.01" name="price1" onChange={this.handleInputChange} ></input>
                 <input type="number" step="0.01" name="amount1" onChange={this.handleInputChange} ></input>
 
