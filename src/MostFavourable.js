@@ -3,6 +3,7 @@ import Unit from "./modules/unit";
 import Product from "./modules/product";
 import MostFavourableCalculator from './modules/mostFavourableCalculator';
 import './MostFavourable.css';
+import './Button.css';
 
 
 class MostFavourable extends Component {
@@ -57,79 +58,87 @@ class MostFavourable extends Component {
     render() {
 
         return (
+            
             <div className="content">
 
-                <div className="poster">
+                
 
-                    <div className="inline-form">
-                        <label for="price1-label">R$</label>
-                        <input
-                            type="number" className="holo" step="0.01" name="price1" onChange={this.handleInputChange}
+                <div className="products">
 
-                            id="price1-label" />
+
+                    <div className="poster">
+
+                    <p className="titulo-produto">#Produto 1</p>
+
+                        <div className="inline-form">
+                            <label >R$</label>
+                            <input
+                                type="number" className="holo" step="0.01" name="price1" onChange={this.handleInputChange}
+
+                                id="price1-label" />
+                        </div>
+                        <div className="inline-form">
+
+                            <input
+                                type="number" className="holo" step="0.01" name="amount1" onChange={this.handleInputChange}
+
+                                id="amount1-label" />
+
+
+                            <select
+                                id="unit1-label"
+
+                                name="unit1" value={this.state.unit1} onChange={this.handleInputChange}>
+                                {
+                                    this.state.units.map((u) => {
+                                        return <option value={u.label} key={u.label + "1"}>{u.label}</option>
+                                    })
+                                }
+                            </select>
+
+                        </div>
+
+
+
                     </div>
-                    <div className="inline-form">
 
-                        <input
-                            type="number" className="holo" step="0.01" name="amount1" onChange={this.handleInputChange}
-
-                            id="amount1-label" />
+                    <div className="poster">
 
 
-                        <select
-                            id="unit1-label"
+                        <p className="titulo-produto">#Produto 2</p>
 
-                            name="unit1" value={this.state.unit1} onChange={this.handleInputChange}>
-                            {
-                                this.state.units.map((u) => {
-                                    return <option value={u.label} key={u.label + "1"}>{u.label}</option>
-                                })
-                            }
-                        </select>
+                        <div className="inline-form">
 
+                            <label>R$</label>
+                            <input
+                                type="number" step="0.01" name="price2" onChange={this.handleInputChange}
+                                className="holo"
+                                id="price2-label" />
+                        </div>
+                        <div className="inline-form">
+                            <input
+                                type="number" step="0.01" name="amount2" onChange={this.handleInputChange}
+                                className="holo"
+                                id="amount2-label" />
+
+
+
+                            <select
+                                id="unit2-label"
+                                name="unit2" value={this.state.unit2} onChange={this.handleInputChange}>
+                                {
+                                    this.state.units.map((u) => {
+                                        return <option value={u.label} key={u.label + "1"}>{u.label}</option>
+                                    })
+                                }
+                            </select>
+                        </div>
                     </div>
-
-
 
                 </div>
 
-                <div className="poster">
-
-                    <div className="inline-form">
-
-                        <label for="price2-label">R$</label>
-                        <input
-                            type="number" step="0.01" name="price2" onChange={this.handleInputChange}
-                            className="holo"
-                            id="price2-label" />
-                    </div>
-                    <div className="inline-form">
-                        <input
-                            type="number" step="0.01" name="amount2" onChange={this.handleInputChange}
-                            className="holo"
-                            id="amount2-label" />
-
-
-
-                        <select
-                            id="unit2-label"
-                            name="unit2" value={this.state.unit2} onChange={this.handleInputChange}>
-                            {
-                                this.state.units.map((u) => {
-                                    return <option value={u.label} key={u.label + "1"}>{u.label}</option>
-                                })
-                            }
-                        </select>
-                    </div>
-                </div>
-
-
-
-
-
-                <button onClick={() => this.compare()}>
+                <button className="button blue" onClick={() => this.compare()}>
                     Comparar</button>
-
 
             </div>
         )
