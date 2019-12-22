@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import SweetAlert from 'sweetalert-react';
 import Unit from "./modules/unit";
 import Product from "./modules/product";
 import MostFavourableCalculator from './modules/mostFavourableCalculator';
 import './MostFavourable.css';
 import './Button.css';
-
+import 'sweetalert/dist/sweetalert.css';
 
 class MostFavourable extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            showAlert: false,
+            alertMessage :'',
             units: [new Unit("Litro", 1000), new Unit("ML", 1), new Unit("Metro", 100), new Unit("Centímetro", 1)],
             price1: null,
             amount1: null,
@@ -34,7 +37,7 @@ class MostFavourable extends Component {
 
         var resultMessage = `O mais favorável é comprar ${result.mostFavourable.amount} ${result.mostFavourable.unit.label} por R$ ${result.mostFavourable.price}, você economiza R$ ${result.savedMoney} em cada ${result.mostFavourable.amount} ${result.mostFavourable.unit.label}`
 
-        alert(resultMessage);
+        this.setState({alertMessage: resultMessage, showAlert: true});
     }
 
     getUnit(label) {
@@ -58,17 +61,17 @@ class MostFavourable extends Component {
     render() {
 
         return (
-            
+
             <div className="content">
 
-                
+
 
                 <div className="products">
 
 
                     <div className="poster">
 
-                    <p className="titulo-produto">#Produto 1</p>
+                        <p className="titulo-produto">#Produto 1</p>
 
                         <div className="inline-form">
                             <label >R$</label>
@@ -139,6 +142,13 @@ class MostFavourable extends Component {
 
                 <button className="button blue" onClick={() => this.compare()}>
                     Comparar</button>
+
+                <SweetAlert
+                    show={this.state.showAlert}
+                    title="Resultado"
+                    text={this.state.alertMessage}
+                    onConfirm={() => this.setState({ showAlert: false })}
+                />
 
             </div>
         )
